@@ -1,4 +1,7 @@
 #Prison Break
+
+#This is a quick command-line text adventure which takes input from the user to direct the story.
+
 import time
 import os
 
@@ -16,6 +19,7 @@ def intro():
 	else:
 		quit
 
+#clears screen and places title
 def prison_title():
 	os.system('cls')
 	print("""
@@ -28,6 +32,7 @@ def prison_title():
 		##################################################
 				""")
 
+#start
 def cell_main():	
 	prison_title()
 	print("""
@@ -181,7 +186,9 @@ def closet_knob():
 	print("""
 		Just as you reach for the doorknob, you hear a guard coming down the hall. Your
 		heart is pounding in your chest as you start to panic. You need to hide!
-
+		""")
+	time.sleep(3)
+	print("""
 		Press C to hide in the Closet
 		Press B to hide behind the Boxes
 		Press R to Return to your cell
@@ -200,7 +207,9 @@ def boxes():
 		You hide behind the boxes as the guard closes in. He notices the cell door open
  		and runs over to inspect. It doesn't take him long to notice you behind the
  		boxes. Before you know it, you're surrounded by guards. There is no escape.
- 		
+ 		""")
+	time.sleep(3)
+	print("""
  		The guards cuff you, and escort you to the maximum security solitary cells. The head
  		guard says "There's no way you can escape now. You will die in this cell!"
  		""")
@@ -218,11 +227,11 @@ def cell_hide():
 		You are back in your cell. This should avoid suspicion from the gaurd.
 		You sit on the bed with nasty sheets as the guards walks by. 
 
-		He takes a quick look in your cell...
+		You make eye-contact with him, and he suspiciously takes a look in your cell...
 		""")
 	time.sleep(5)
 	print("""
-		...and walks back down the hall and up the stairs.
+		...shrugs, and walks back down the hall and up the stairs.
 
 		Press S to inspect the Sheets
 		Press H to go to the Hall
@@ -362,12 +371,13 @@ def stairs_guard():
 	print("""
 		You start to motion towards the stairs, and you hear a guard coming down. Your
 		heart is pounding in your chest as you start to panic. You need to hide!
-
+		""")
+	time.sleep(3)
+	print("""
 		Press C to hide in the Closet
 		Press B to hide behind the Boxes
 		Press R to Return to your cell
 				""")
-
 	choice = input()
 	if choice == 'c':
 		closet_locked_guard()
@@ -535,8 +545,10 @@ def courtyard():
 		Nervously, you start to climb the stairs. Your hearts is pounding! As you walk
 	  by the office, you make eye contact with one of the guards. He says "Hey!"
 	  and your heart stops.
-	  
-	  Press T to Talk to the guard
+	  		""")
+	time.sleep(4)
+	print("""
+		Press T to Talk to the guard
 	  Press R to Run for it
 				""")
 	choice = input()
@@ -555,7 +567,7 @@ def guard():
 				""")
 	choice = input()
 	if choice == 'c':
-		freedom()
+		courtyard()
 
 def run():
 	prison_title()
@@ -564,22 +576,26 @@ def run():
 	  alarm and signals to outside guards there's a prisoner on the loose. Both towers
 	  have guns drawn on you as they take aim. The first bullet almost hits you in the
 	  leg. 
-
+	  """)
+	time.sleep(3)
+	print("""
 	  You keep running. The gate is only 20 yards away, just a little further and
 	  you're free! Suddenly, you fall to the ground as you feel your lower body go
 	  completely numb. You've been shot. You can't move your legs. You take one last
 	  look at the gate, just several feet away. You hear one final shot and everything
 	  goes black.	  
 				""")
-	time.sleep(10)
+	time.sleep(5)
 	print("""
+		Game Over!
+
 		Press R to Restart
 			""")
 	choice = input()
 	if choice == 'r':
 		cell_main()
 
-def freedom():
+def courtyard():
 	prison_title()
 	print("""
 		You wish the guard a good night, and enter the courtyard. Your heart
