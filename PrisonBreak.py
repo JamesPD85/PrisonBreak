@@ -1,6 +1,7 @@
 #Prison Break
 
 #This is a quick command-line text adventure which takes input from the user to direct the story.
+#Try to escape the prison.
 
 import time
 import os
