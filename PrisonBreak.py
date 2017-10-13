@@ -188,9 +188,9 @@ def closet_knob():
 				""")
 	choice = input()
 	if choice == 'c':
-		closet_locked_guard() #check closet again, locked
+		closet_locked_guard()
 	elif choice == 'b':
-		boxes() #game over
+		boxes()
 	elif choice == 'r':
 		cell_hide()
 
@@ -283,7 +283,7 @@ def closet_unlock():
 				""")
 	choice = input()
 	if choice == 's':
-		closet_uniform_off() #
+		closet_uniform_off()
 	elif choice == 'r':
 		hall_closet_unlocked()
 
@@ -314,34 +314,6 @@ def closet_uniform_on():
 		closet_uniform_off()
 	elif choice == 'r':
 		hall_with_uniform()
-
-# def open_closet(): #529 hall_closet_unlocked
-# 	prison_title()
-# 	print("""
-# 		The closet door is open.
-		
-# 		Press E to Enter the closet
-# 		Press R to Return to the hall
-# 		""")
-# 	choice = input()
-# 	if choice == 'c':
-# 		closet_open1()
-# 	elif choice == 'r':
-# 		hall3() #
-
-# def open_closet1():
-# 	prison_title()
-# 	print("""
-# 		The closet door is open.
-		
-# 		Press E to Enter the closet
-# 		Press R to Return to the hall
-# 		""")
-# 	choice = input()
-# 	if choice == 'c':
-# 		closet_open2()
-# 	elif choice == 'r':
-# 		hall3()
 
 def open_closet():
 	prison_title()
@@ -415,7 +387,7 @@ def stairs_no_guard():
 				""")
 	choice = input()
 	if choice == 'r':
-		hall_no_guard() #return to hall with NO uniform NO hairpin
+		hall_no_guard()
 
 def stairs_with_hairpin():
 	prison_title()
@@ -497,9 +469,9 @@ def hall_find_pin():
 				""")
 	choice = input()
 	if choice == 't':
-		hall_with_hairpin() #return to hall with hairpin
+		hall_with_hairpin()
 	elif choice == 'r':
-		hall_no_guard() #return to hall w/o hairpin
+		hall_no_guard()
 
 def hall_with_hairpin():
 	prison_title()
@@ -514,9 +486,9 @@ def hall_with_hairpin():
 	if choice == 'c':
 		closet_hairpin()
 	elif choice == 's':
-		stairs_with_hairpin() #check the stairs (no guard)
+		stairs_with_hairpin()
 
-def hall_closet_unlocked(): #after picking lock (no uniform)
+def hall_closet_unlocked():
 	prison_title()
 	print("""
 		You are back in the hallway. Looks like the stairs are your way out.
@@ -526,9 +498,9 @@ def hall_closet_unlocked(): #after picking lock (no uniform)
 				""")
 	choice = input()
 	if choice == 'c':
-		open_closet() #
+		open_closet()
 	elif choice == 's':
-		stairs_closet_unlocked() #433
+		stairs_closet_unlocked()
 
 def hall_with_uniform():
 	prison_title()
@@ -541,9 +513,9 @@ def hall_with_uniform():
 				""")
 	choice = input()
 	if choice == 'c':
-		closet_uniform_on() #
+		closet_uniform_on()
 	elif choice == 's':
-		stairs_with_uniform() #
+		stairs_with_uniform()
 
 def cell_final():
 	prison_title()
@@ -555,7 +527,7 @@ def cell_final():
 				""")
 	choice = input()
 	if choice == 'h':
-		hall_no_guard() #
+		hall_no_guard()
 
 def courtyard():
 	prison_title()
@@ -569,9 +541,9 @@ def courtyard():
 				""")
 	choice = input()
 	if choice == 't':
-		guard() #
+		guard()
 	elif choice == 'r':
-		run() #
+		run()
 
 def guard():
 	prison_title()
@@ -583,7 +555,7 @@ def guard():
 				""")
 	choice = input()
 	if choice == 'c':
-		freedom() #
+		freedom()
 
 def run():
 	prison_title()
@@ -605,7 +577,7 @@ def run():
 			""")
 	choice = input()
 	if choice == 'r':
-		cell_main() #
+		cell_main()
 
 def freedom():
 	prison_title()
@@ -623,6 +595,6 @@ def freedom():
 			""")
 	choice = input()
 	if choice == 'r':
-		cell_main() #
+		cell_main()
 
 intro()
