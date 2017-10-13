@@ -1,17 +1,23 @@
 #Prison Break
+import time
+import os
 
-print("""
-	The Prison Game
-	The object of this game is to escape the prison without being caught.
-  Ready to begin? (y/n)
-  """)
-choice = input()
-if choice == 'y':
-	cell()
-else:
-	quit
+def intro():
+	print("""
+		 - The Prison Game -
+
+		The object of this game is to escape the prison without being caught.
+
+		Ready to begin? (y/n)
+	  """)
+	choice = input()
+	if choice == 'y':
+		cell_main()
+	else:
+		quit
 
 def prison_title():
+	os.system('cls')
 	print("""
 		##################################################
 		#      PPPPP RRRRR IIIII SSSSS  OOO  N    N      #			 
@@ -22,26 +28,26 @@ def prison_title():
 		##################################################
 				""")
 
-def cell():
+def cell_main():	
 	prison_title()
 	print("""
 		You are in a prison cell. You've been here for 20 years for a crime you
 		did not commit, and need to get out. There are some dirty bed sheets,
 		a mirror by the sink, and the cell door is locked.
 
-	  Press S to inspect the Sheets
-	  Press L to inspect the Lock
+		Press S to inspect the Sheets
+		Press L to inspect the Lock
 		Press M to inspect the Mirror
 				""")
 	choice = input()
 	if choice == 's':
-		sheets()
+		sheets_inspect()
 	elif choice == 'l':
 		cell_lock()
 	elif choice == 'm':
-		mirror()
+		mirror_inspect()
 
-def cell_mirror():
+def cell_with_mirror():
 	prison_title()
 	print("""
 		You are in your cell with the mirror. You wonder how you could use this to
@@ -52,11 +58,11 @@ def cell_mirror():
 				""")
 	choice = input()
 	if choice == 's':
-		sheets_mirror()
+		sheets_with_mirror()
 	elif choice == 'l':
 		cell_lock_mirror()
 
-def sheets():
+def sheets_inspect():
 	prison_title()
 	print("""
 		There are filthy, disgusting sheets on the bed.
@@ -64,33 +70,36 @@ def sheets():
 
 		Press R to Return to your cell
 				""")
+	choice = input()
+	if choice == 'r':
+		cell_main()
 
-def sheets_mirror():
+def sheets_with_mirror():
 	prison_title()
 	print("""
 		You look at the same disgusting sheets again.
-    Hopefully you won't have to look at them much longer.
-    
-    Press R to Return to your cell
+		Hopefully you won't have to look at them much longer.
+
+		Press R to Return to your cell
 				""")
 	choice = input()
-	if choice = 'r':
+	if choice == 'r':
 		cell_mirror()
 
-def mirror():
+def mirror_inspect():
 	prison_title()
 	print("""
 		As you look into the mirror yet again after 20 years, you suddenly notice that
-    the mirror looks a little strange. You are compelled to take a closer look...
-
-    Press L to Look closer
-    Press R to Return to your cell
+		the mirror looks a little strange. You are compelled to take a closer look...
+		
+		Press L to Look closer
+		Press R to Return to your cell
 				""")
 	choice = input()
 	if choice == 'l':
 		mirror_look()
 	elif choice == 'r':
-		cell()
+		cell_main()
 
 def mirror_look():
 	prison_title()
@@ -98,14 +107,14 @@ def mirror_look():
 		When you look at it from another angle, you can see that the mirror is loose.
 		It looks like you can take it.
 
-		Press T to take the mirror
+		Press T to Take the mirror
 		Press R to Return to your cell
 				""")
 	choice = input()
 	if choice == 't':
-		cell_mirror()
+		cell_with_mirror()
 	elif choice == 'r':
-		cell()
+		cell_main()
 
 def cell_lock():
 	prison_title()
@@ -119,7 +128,7 @@ def cell_lock():
 				""")
 	choice = input()
 	if choice == 'r':
-		cell()
+		cell_main()
 
 def cell_lock_mirror():
 	prison_title()
@@ -147,11 +156,11 @@ def keypad():
 				""")
 	choice = input()
 	if choice == 'k':
-		lock_open()
+		cell_escape()
 	elif choice == 'r':
 		cell_mirror()
 
-def lock_open():
+def cell_escape():
 	prison_title()
 	print("""
 		You escaped your cell! Now is your best chance to escape! There are some boxes
@@ -163,68 +172,58 @@ def lock_open():
 				""")
 	choice = input()
 	if choice == 'c':
-		closet_locked()
+		closet_knob()
 	elif choice == 's':
-		stairs()
+		stairs_guard()
 
-def lock_open1():
-	prison_title()
-	print("""
-		You are in the hallway outside the cell. The hallway leads to stairs, and
-    there's a closet door about 20 feet away.
-
-    Press C to check the Closet
-    Press H to check the Hall
-    Press S to check the Stairs
-    """)
-	choice = input()
-	if choice == 'c':
-		closet_locked1()
-	elif choice == 'h':
-		hall1()
-	elif choice == 's':
-		stairs()
-
-def closet():
+def closet_knob():
 	prison_title()
 	print("""
 		Just as you reach for the doorknob, you hear a guard coming down the hall. Your
-    heart is pounding in your chest as you start to panic. You need to hide!
-    
-    Press C to hide in the Closet
-    Press B to hide behind the Boxes
-    Press R to Return to your cell
-    """)
+		heart is pounding in your chest as you start to panic. You need to hide!
+
+		Press C to hide in the Closet
+		Press B to hide behind the Boxes
+		Press R to Return to your cell
+				""")
 	choice = input()
 	if choice == 'c':
-		closet_locked()
+		closet_locked_guard() #check closet again, locked
 	elif choice == 'b':
-		boxes()
+		boxes() #game over
 	elif choice == 'r':
-		cell_open()
+		cell_hide()
 
 def boxes():
 	prison_title()
 	print("""
 		You hide behind the boxes as the guard closes in. He notices the cell door open
  		and runs over to inspect. It doesn't take him long to notice you behind the
-    boxes. Before you know it, you're surrounded by guards. There is no escape.
- 		The guards cuff you, and escort to the maximum security solitary cells. The head
- 		guard says "There's no way you can escape now. You will die in this cell!"
+ 		boxes. Before you know it, you're surrounded by guards. There is no escape.
  		
- 		Press R to Restart the game
+ 		The guards cuff you, and escort you to the maximum security solitary cells. The head
+ 		guard says "There's no way you can escape now. You will die in this cell!"
  		""")
+	time.sleep(5)
+	print("""
+		Press R to Restart the game
+				""")
 	choice = input()	
 	if choice == 'r':
-		cell()
+		cell_main()
 
-def cell_open():
+def cell_hide():
 	prison_title()
 	print("""
 		You are back in your cell. This should avoid suspicion from the gaurd.
-		You sit on the bed with nasty sheets as the guards walks by. He takes a quick
-		look in your cell, and walks back down the hall and up the stairs.
-		
+		You sit on the bed with nasty sheets as the guards walks by. 
+
+		He takes a quick look in your cell...
+		""")
+	time.sleep(5)
+	print("""
+		...and walks back down the hall and up the stairs.
+
 		Press S to inspect the Sheets
 		Press H to go to the Hall
 				""")
@@ -232,9 +231,9 @@ def cell_open():
 	if choice == 's':
 		sheets_gross()
 	elif choice == 'h':
-		hall()
+		hall_no_guard()
 
-def closet_locked():
+def closet_locked_guard():
 	prison_title()
 	print("""
 		The closet door is locked. You might be able to pick the lock with something.
@@ -247,47 +246,49 @@ def closet_locked():
 	if choice == 'b':
 		boxes()
 	elif choice == 'r':
-		cell_open()
+		cell_hide()
 
-def closet_locked1():
+def closet_locked_no_hairpin():
 	prison_title()
 	print("""
 		The closet door is locked. You might be able to pick the lock with something.
-    
-    Press R to Return to the hall
+
+		Press R to Return to the hall
 				""")
 	choice = input()
 	if choice == 'r':
-		hall()
+		hall_no_guard()
 
-def closet_locked2():
+def closet_hairpin():
 	prison_title()
 	print("""
 		The closet door is locked. You might be able to pick the lock with something.
-    
-    Press P to Pick the lock
-    Press R to Return to the hall
+
+		Press P to Pick the lock
+		Press R to Return to the hall
 				""")
 	choice = input()
 	if choice == 'p':
-		closet_open()
+		closet_unlock()
 	elif choice == 'r':
-		hall2()
+		hall_with_hairpin()
 
-def closet_open():
+def closet_unlock():
+	prison_title()
 	print("""
 		You pick the lock with the hairpin. The hairpin breaks, but the closet door opens.
 
-	  Press S to Search the closet
-	  Press R to Return to the hall
+		Press S to Search the closet
+		Press R to Return to the hall
 				""")
 	choice = input()
 	if choice == 's':
-		closet_open1()
+		closet_uniform_off() #
 	elif choice == 'r':
-		hall3()
+		hall_closet_unlocked()
 
-def closet_open1():
+def closet_uniform_off():
+	prison_title()
 	print("""
 		This closet is full of maintenance equipment. A spare janitor's uniform is hanging up.
 		
@@ -298,9 +299,10 @@ def closet_open1():
 	if choice == 'i':
 		uniform()
 	elif choice == 'r':
-		hall3()
+		hall_closet_unlocked()
 
-def closet_open2():
+def closet_uniform_on():
+	prison_title()
 	print("""
 		This closet is full of maintenance equipment. Nothing else useful here.
 		
@@ -309,11 +311,40 @@ def closet_open2():
 		""")
 	choice = input()
 	if choice == 'c':
-		closet_open1()
+		closet_uniform_off()
 	elif choice == 'r':
-		hall4()
+		hall_with_uniform()
+
+# def open_closet(): #529 hall_closet_unlocked
+# 	prison_title()
+# 	print("""
+# 		The closet door is open.
+		
+# 		Press E to Enter the closet
+# 		Press R to Return to the hall
+# 		""")
+# 	choice = input()
+# 	if choice == 'c':
+# 		closet_open1()
+# 	elif choice == 'r':
+# 		hall3() #
+
+# def open_closet1():
+# 	prison_title()
+# 	print("""
+# 		The closet door is open.
+		
+# 		Press E to Enter the closet
+# 		Press R to Return to the hall
+# 		""")
+# 	choice = input()
+# 	if choice == 'c':
+# 		closet_open2()
+# 	elif choice == 'r':
+# 		hall3()
 
 def open_closet():
+	prison_title()
 	print("""
 		The closet door is open.
 		
@@ -321,38 +352,13 @@ def open_closet():
 		Press R to Return to the hall
 		""")
 	choice = input()
-	if choice == 'c':
-		closet_open1()
+	if choice == 'e':
+		closet_uniform_off()
 	elif choice == 'r':
-		hall3()
-
-def open_closet1():
-	print("""
-		The closet door is open.
-		
-		Press E to Enter the closet
-		Press R to Return to the hall
-		""")
-	choice = input()
-	if choice == 'c':
-		closet_open2()
-	elif choice == 'r':
-		hall3()
-
-def open_closet2():
-	print("""
-		The closet door is open.
-		
-		Press E to Enter the closet
-		Press R to Return to the hall
-		""")
-	choice = input()
-	if choice == 'c':
-		closet_open2()
-	elif choice == 'r':
-		hall4()
+		hall_closet_unlocked()
 
 def uniform():
+	prison_title()
 	print("""
 		This uniform looks to be about your size.
 		
@@ -366,6 +372,7 @@ def uniform():
 		closet_open1()
 
 def closet_janitor():
+	prison_title()
 	print("""
 		You are now dressed as a janitor. This could be the perfect disguise.
 		
@@ -374,11 +381,31 @@ def closet_janitor():
 				""")
 	choice = input()
 	if choice == 'c':
-		closet_open1()
+		closet_uniform_off()
 	elif choice == 'r':
-		closet_open2()
+		closet_uniform_on()
 
-def stairs():
+def stairs_guard():
+	prison_title()
+	print("""
+		You start to motion towards the stairs, and you hear a guard coming down. Your
+		heart is pounding in your chest as you start to panic. You need to hide!
+
+		Press C to hide in the Closet
+		Press B to hide behind the Boxes
+		Press R to Return to your cell
+				""")
+
+	choice = input()
+	if choice == 'c':
+		closet_locked_guard()
+	elif choice == 'b':
+		boxes()
+	elif choice == 'r':
+		cell_open()
+
+def stairs_no_guard():
+	prison_title()
 	print("""
 		You peek up the stairs, and see 2 doors. One leading outside, and the other to
 		the guard's office. Trying to escape now is just asking to get shot. Better come
@@ -388,9 +415,10 @@ def stairs():
 				""")
 	choice = input()
 	if choice == 'r':
-		hall()
+		hall_no_guard() #return to hall with NO uniform NO hairpin
 
-def stairs1():
+def stairs_with_hairpin():
+	prison_title()
 	print("""
 		You peek up the stairs, and see 2 doors. One leading outside, and the other to
 		the guard's office. All you are armed with is a hairpin. Trying to escape now
@@ -400,9 +428,23 @@ def stairs1():
 				""")
 	choice = input()
 	if choice == 'r':
-		hall2()
+		hall_with_hairpin()
 
-def stairs2():
+def stairs_closet_unlocked():
+	prison_title()
+	print("""
+		You peek up the stairs, and see 2 doors. One leading outside, and the other to
+		the guard's office. All you are armed with a broken hairpin. Trying to escape
+		now is just asking to get shot. Better come up with a plan.
+
+		Press R to Return to the hall
+				""")
+	choice = input()
+	if choice == 'r':
+		hall_closet_unlocked()
+
+def stairs_with_uniform():
+	prison_title()
 	print("""
 		There are two doors upstairs. One leading outside, and the other to the guard's office.
 		Being dressed as the janitor gives you the best chance yet to escape unnoticed.
@@ -414,9 +456,10 @@ def stairs2():
 	if choice == 'c':
 		courtyard()
 	elif choice == 'r':
-		hall4()
+		hall_with_uniform()
 
 def sheets_gross():
+	prison_title()
 	print("""
 		Ugh! You wonder why you keep looking at these. You have to get out of here!
 		
@@ -426,7 +469,8 @@ def sheets_gross():
 	if choice == 'r':
 		cell_final()
 
-def hall():
+def hall_no_guard():
+	prison_title()
 	print("""
 		You are in the hallway outside the cell. The hallway leads to stairs, and
 		there's a closet door about 20 feet away.
@@ -437,13 +481,14 @@ def hall():
 				""")
 	choice = input()
 	if choice == 'c':
-		closet()
+		closet_locked_no_hairpin()
 	elif choice == 'h':
-		hall()
+		hall_find_pin()
 	elif choice == 's':
-		stairs()
+		stairs_no_guard()
 
-def hall1():
+def hall_find_pin():
+	prison_title()
 	print("""
 		As you search the hallway, you come across a hairpin. This might come in handy.
 
@@ -452,51 +497,56 @@ def hall1():
 				""")
 	choice = input()
 	if choice == 't':
-		hall2() #return to hall with hairpin
+		hall_with_hairpin() #return to hall with hairpin
 	elif choice == 'r':
-		hall() #return to hall w/o hairpin
+		hall_no_guard() #return to hall w/o hairpin
 
-def hall2():
+def hall_with_hairpin():
+	prison_title()
 	print("""
 		You are in the hallway outside the cell. The hallway leads to stairs, and
-    there's a closet door about 20 feet away.
-    
-    Press C to check the Closet
-    Press S to check the Stairs
+		there's a closet door about 20 feet away.
+
+		Press C to check the Closet
+		Press S to check the Stairs
 				""")
 	choice = input()
 	if choice == 'c':
-		closet_locked2() #already checked once
-	elif choice == 'r':
-		stairs() #check the stairs (no guard)
+		closet_hairpin()
+	elif choice == 's':
+		stairs_with_hairpin() #check the stairs (no guard)
 
-def hall3():
+def hall_closet_unlocked(): #after picking lock (no uniform)
+	prison_title()
 	print("""
 		You are back in the hallway. Looks like the stairs are your way out.
-    
-    Press C to check the Closet
-    Press S to check the Stairs
+
+		Press C to check the Closet
+		Press S to check the Stairs
 				""")
 	choice = input()
 	if choice == 'c':
 		open_closet() #
 	elif choice == 's':
-		stairs2() #
+		stairs_closet_unlocked() #433
 
-def hall4():
+def hall_with_uniform():
+	prison_title()
 	print("""
-		You are back in the hallway. Looks like the stairs are your way out.
-    
-    Press C to check the Closet
-    Press S to check the Stairs
+		You are back in the hallway with the Janitor's uniform on.
+		Looks like the stairs are your way out.
+
+		Press C to check the Closet
+		Press S to check the Stairs
 				""")
 	choice = input()
 	if choice == 'c':
-		open_closet2() #
+		closet_uniform_on() #
 	elif choice == 's':
-		stairs2() #
+		stairs_with_uniform() #
 
 def cell_final():
+	prison_title()
 	print("""
 		Ok, this is it. The guard won't be back for a while, now is your last chance.
 		You can almost feel the freedom.
@@ -505,9 +555,10 @@ def cell_final():
 				""")
 	choice = input()
 	if choice == 'h':
-		hall() #
+		hall_no_guard() #
 
 def courtyard():
+	prison_title()
 	print("""
 		Nervously, you start to climb the stairs. Your hearts is pounding! As you walk
 	  by the office, you make eye contact with one of the guards. He says "Hey!"
@@ -523,6 +574,7 @@ def courtyard():
 		run() #
 
 def guard():
+	prison_title()
 	print("""
 		The guards says "Have a good night," and nods to you. You can't believe
     that actually worked!
@@ -534,6 +586,7 @@ def guard():
 		freedom() #
 
 def run():
+	prison_title()
 	print("""
 		You panic and burst out the door as the guard chases you. The guard sounds the
 	  alarm and signals to outside guards there's a prisoner on the loose. Both towers
@@ -552,14 +605,15 @@ def run():
 			""")
 	choice = input()
 	if choice == 'r':
-		cell() #
+		cell_main() #
 
 def freedom():
+	prison_title()
 	print("""
 		You wish the guard a good night, and enter the courtyard. Your heart
     is pounding out of your chest as you walk to the outer gate. You get to the
     gate, and look up at the tower.
-    
+
     You think to yourself, "please open the gate..." The gate opens for you.
     You smile as you walk off the prison grounds. You are finally free!    
 				""")
@@ -569,4 +623,6 @@ def freedom():
 			""")
 	choice = input()
 	if choice == 'r':
-		cell() #
+		cell_main() #
+
+intro()
