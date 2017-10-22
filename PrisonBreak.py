@@ -1,8 +1,4 @@
 #Prison Break
-
-#This is a quick command-line text adventure which takes input from the user to direct the story.
-#Try to escape the prison.
-
 import time
 import os
 
@@ -16,11 +12,10 @@ def intro():
 	  """)
 	choice = input()
 	if choice == 'y':
-		cell_main()
+		cell_main()	
 	else:
 		quit
 
-#clears screen and places title
 def prison_title():
 	os.system('cls')
 	print("""
@@ -33,7 +28,9 @@ def prison_title():
 		##################################################
 				""")
 
-#start
+def invalid_selection():
+	print('Invalid selection. Try again.')
+
 def cell_main():	
 	prison_title()
 	print("""
@@ -45,13 +42,19 @@ def cell_main():
 		Press L to inspect the Lock
 		Press M to inspect the Mirror
 				""")
-	choice = input()
-	if choice == 's':
-		sheets_inspect()
-	elif choice == 'l':
-		cell_lock()
-	elif choice == 'm':
-		mirror_inspect()
+	while True:
+		choice = input()
+		if choice == 's':
+			sheets_inspect()
+			break
+		elif choice == 'l':			
+			cell_lock()
+			break
+		elif choice == 'm':
+			mirror_inspect()
+			break
+		else:	
+		 	invalid_selection()
 
 def cell_with_mirror():
 	prison_title()
@@ -62,11 +65,16 @@ def cell_with_mirror():
 		Press S to inspect the Sheets
 		Press L to inspect the Lock
 				""")
-	choice = input()
-	if choice == 's':
-		sheets_with_mirror()
-	elif choice == 'l':
-		cell_lock_mirror()
+	while True:
+		choice = input()
+		if choice == 's':
+			sheets_with_mirror()
+			break
+		elif choice == 'l':
+			cell_lock_mirror()
+			break
+		else:	
+		 	invalid_selection()
 
 def sheets_inspect():
 	prison_title()
@@ -76,9 +84,13 @@ def sheets_inspect():
 
 		Press R to Return to your cell
 				""")
-	choice = input()
-	if choice == 'r':
-		cell_main()
+	while True:
+		choice = input()
+		if choice == 'r':
+			cell_main()
+			break
+		else:	
+		 	invalid_selection()
 
 def sheets_with_mirror():
 	prison_title()
@@ -88,9 +100,13 @@ def sheets_with_mirror():
 
 		Press R to Return to your cell
 				""")
-	choice = input()
-	if choice == 'r':
-		cell_mirror()
+	while True:
+		choice = input()
+		if choice == 'r':
+			cell_mirror()
+			break
+		else:	
+		 	invalid_selection()
 
 def mirror_inspect():
 	prison_title()
@@ -101,11 +117,16 @@ def mirror_inspect():
 		Press L to Look closer
 		Press R to Return to your cell
 				""")
-	choice = input()
-	if choice == 'l':
-		mirror_look()
-	elif choice == 'r':
-		cell_main()
+	while True:
+		choice = input()
+		if choice == 'l':
+			mirror_look()
+			break
+		elif choice == 'r':
+			cell_main()
+			break
+		else:	
+		 	invalid_selection()
 
 def mirror_look():
 	prison_title()
@@ -116,11 +137,16 @@ def mirror_look():
 		Press T to Take the mirror
 		Press R to Return to your cell
 				""")
-	choice = input()
-	if choice == 't':
-		cell_with_mirror()
-	elif choice == 'r':
-		cell_main()
+	while True:
+		choice = input()
+		if choice == 't':
+			cell_with_mirror()
+			break
+		elif choice == 'r':
+			cell_main()
+			break
+		else:	
+		 	invalid_selection()
 
 def cell_lock():
 	prison_title()
@@ -132,9 +158,13 @@ def cell_lock():
 
 		Press R to Return to your cell
 				""")
-	choice = input()
-	if choice == 'r':
-		cell_main()
+	while True:
+		choice = input()
+		if choice == 'r':
+			cell_main()
+			break
+		else:	
+		 	invalid_selection()
 
 def cell_lock_mirror():
 	prison_title()
@@ -145,11 +175,16 @@ def cell_lock_mirror():
 		Press M to use Mirror
 		Press R to Return to your cell
 				""")
-	choice = input()
-	if choice == 'm':
-		keypad()
-	elif choice == 'r':
-		cell_mirror()
+	while True:
+		choice = input()
+		if choice == 'm':
+			keypad()
+			break
+		elif choice == 'r':
+			cell_mirror()
+			break
+		else:	
+		 	invalid_selection()
 
 def keypad():
 	prison_title()
@@ -160,11 +195,16 @@ def keypad():
 		Press K to use the Keypad
 		Press R to Return to your cell
 				""")
-	choice = input()
-	if choice == 'k':
-		cell_escape()
-	elif choice == 'r':
-		cell_mirror()
+	while True:
+		choice = input()
+		if choice == 'k':
+			cell_escape()
+			break
+		elif choice == 'r':
+			cell_mirror()
+			break
+		else:	
+		 	invalid_selection()
 
 def cell_escape():
 	prison_title()
@@ -176,31 +216,40 @@ def cell_escape():
 		Press C to check the Closet
 		Press S to check the Stairs
 				""")
-	choice = input()
-	if choice == 'c':
-		closet_knob()
-	elif choice == 's':
-		stairs_guard()
+	while True:
+		choice = input()
+		if choice == 'c':
+			closet_knob()
+			break
+		elif choice == 's':
+			stairs_guard()
+			break
+		else:	
+		 	invalid_selection()
 
 def closet_knob():
 	prison_title()
 	print("""
 		Just as you reach for the doorknob, you hear a guard coming down the hall. Your
 		heart is pounding in your chest as you start to panic. You need to hide!
-		""")
-	time.sleep(3)
-	print("""
+
 		Press C to hide in the Closet
 		Press B to hide behind the Boxes
 		Press R to Return to your cell
 				""")
-	choice = input()
-	if choice == 'c':
-		closet_locked_guard()
-	elif choice == 'b':
-		boxes()
-	elif choice == 'r':
-		cell_hide()
+	while True:
+		choice = input()
+		if choice == 'c':
+			closet_locked_guard()
+			break
+		elif choice == 'b':
+			boxes()
+			break
+		elif choice == 'r':
+			cell_hide()
+			break
+		else:	
+		 	invalid_selection()
 
 def boxes():
 	prison_title()
@@ -208,9 +257,7 @@ def boxes():
 		You hide behind the boxes as the guard closes in. He notices the cell door open
  		and runs over to inspect. It doesn't take him long to notice you behind the
  		boxes. Before you know it, you're surrounded by guards. There is no escape.
- 		""")
-	time.sleep(3)
-	print("""
+ 		
  		The guards cuff you, and escort you to the maximum security solitary cells. The head
  		guard says "There's no way you can escape now. You will die in this cell!"
  		""")
@@ -218,9 +265,13 @@ def boxes():
 	print("""
 		Press R to Restart the game
 				""")
-	choice = input()	
-	if choice == 'r':
-		cell_main()
+	while True:
+		choice = input()	
+		if choice == 'r':
+			cell_main()
+			break
+		else:	
+		 	invalid_selection()
 
 def cell_hide():
 	prison_title()
@@ -228,20 +279,25 @@ def cell_hide():
 		You are back in your cell. This should avoid suspicion from the gaurd.
 		You sit on the bed with nasty sheets as the guards walks by. 
 
-		You make eye-contact with him, and he suspiciously takes a look in your cell...
+		He takes a quick look in your cell...
 		""")
 	time.sleep(5)
 	print("""
-		...shrugs, and walks back down the hall and up the stairs.
+		...and walks back down the hall and up the stairs.
 
 		Press S to inspect the Sheets
 		Press H to go to the Hall
 				""")
-	choice = input()
-	if choice == 's':
-		sheets_gross()
-	elif choice == 'h':
-		hall_no_guard()
+	while True:
+		choice = input()
+		if choice == 's':
+			sheets_gross()
+			break
+		elif choice == 'h':
+			hall_no_guard()
+			break
+		else:	
+		 	invalid_selection()
 
 def closet_locked_guard():
 	prison_title()
@@ -252,11 +308,16 @@ def closet_locked_guard():
 		Press B to hide behind the Boxes
 		Press R to Return to your cell
 				""")
-	choice = input()
-	if choice == 'b':
-		boxes()
-	elif choice == 'r':
-		cell_hide()
+	while True:		
+		choice = input()
+		if choice == 'b':
+			boxes()
+			break
+		elif choice == 'r':
+			cell_hide()
+			break
+		else:	
+		 	invalid_selection()
 
 def closet_locked_no_hairpin():
 	prison_title()
@@ -265,9 +326,13 @@ def closet_locked_no_hairpin():
 
 		Press R to Return to the hall
 				""")
-	choice = input()
-	if choice == 'r':
-		hall_no_guard()
+	while True:
+		choice = input()
+		if choice == 'r':
+			hall_no_guard()
+			break
+		else:	
+		 	invalid_selection()
 
 def closet_hairpin():
 	prison_title()
@@ -277,11 +342,16 @@ def closet_hairpin():
 		Press P to Pick the lock
 		Press R to Return to the hall
 				""")
-	choice = input()
-	if choice == 'p':
-		closet_unlock()
-	elif choice == 'r':
-		hall_with_hairpin()
+	while True:
+		choice = input()
+		if choice == 'p':
+			closet_unlock()
+			break
+		elif choice == 'r':
+			hall_with_hairpin()
+			break
+		else:	
+		 	invalid_selection()
 
 def closet_unlock():
 	prison_title()
@@ -291,11 +361,16 @@ def closet_unlock():
 		Press S to Search the closet
 		Press R to Return to the hall
 				""")
-	choice = input()
-	if choice == 's':
-		closet_uniform_off()
-	elif choice == 'r':
-		hall_closet_unlocked()
+	while True:
+		choice = input()
+		if choice == 's':
+			closet_uniform_off()
+			break
+		elif choice == 'r':
+			hall_closet_unlocked()
+			break
+		else:	
+		 	invalid_selection()
 
 def closet_uniform_off():
 	prison_title()
@@ -305,11 +380,16 @@ def closet_uniform_off():
 		Press I to Inspect the uniform
 		Press R to Return to the hall
 		""")
-	choice = input()
-	if choice == 'i':
-		uniform()
-	elif choice == 'r':
-		hall_closet_unlocked()
+	while True:
+		choice = input()
+		if choice == 'i':
+			uniform()
+			break
+		elif choice == 'r':
+			hall_closet_unlocked()
+			break
+		else:	
+		 	invalid_selection()
 
 def closet_uniform_on():
 	prison_title()
@@ -319,11 +399,16 @@ def closet_uniform_on():
 		Press C to Change out of uniform
 		Press R to Return to the hall
 		""")
-	choice = input()
-	if choice == 'c':
-		closet_uniform_off()
-	elif choice == 'r':
-		hall_with_uniform()
+	while True:
+		choice = input()
+		if choice == 'c':
+			closet_uniform_off()
+			break
+		elif choice == 'r':
+			hall_with_uniform()
+			break
+		else:	
+		 	invalid_selection()
 
 def open_closet():
 	prison_title()
@@ -333,11 +418,16 @@ def open_closet():
 		Press E to Enter the closet
 		Press R to Return to the hall
 		""")
-	choice = input()
-	if choice == 'e':
-		closet_uniform_off()
-	elif choice == 'r':
-		hall_closet_unlocked()
+	while True:
+		choice = input()
+		if choice == 'e':
+			closet_uniform_off()
+			break
+		elif choice == 'r':
+			hall_closet_unlocked()
+			break
+		else:	
+			 	invalid_selection()
 
 def uniform():
 	prison_title()
@@ -347,11 +437,16 @@ def uniform():
 		Press W to Wear the uniform
 		Press R to Return to the closet
 				""")
-	choice = input()
-	if choice == 'w':
-		closet_janitor()
-	elif choice == 'r':
-		closet_open1()
+	while True:
+		choice = input()
+		if choice == 'w':
+			closet_janitor()
+			break
+		elif choice == 'r':
+			closet_open1()
+			break
+		else:	
+			 	invalid_selection()
 
 def closet_janitor():
 	prison_title()
@@ -361,31 +456,40 @@ def closet_janitor():
 		Press C Change out of the uniform
 		Press R to Return to the closet
 				""")
-	choice = input()
-	if choice == 'c':
-		closet_uniform_off()
-	elif choice == 'r':
-		closet_uniform_on()
+	while True:
+		choice = input()
+		if choice == 'c':
+			closet_uniform_off()
+			break
+		elif choice == 'r':
+			closet_uniform_on()
+			break
+		else:	
+		 	invalid_selection()
 
 def stairs_guard():
 	prison_title()
 	print("""
 		You start to motion towards the stairs, and you hear a guard coming down. Your
 		heart is pounding in your chest as you start to panic. You need to hide!
-		""")
-	time.sleep(3)
-	print("""
+
 		Press C to hide in the Closet
 		Press B to hide behind the Boxes
 		Press R to Return to your cell
 				""")
-	choice = input()
-	if choice == 'c':
-		closet_locked_guard()
-	elif choice == 'b':
-		boxes()
-	elif choice == 'r':
-		cell_open()
+	while True:
+		choice = input()
+		if choice == 'c':
+			closet_locked_guard()
+			break
+		elif choice == 'b':
+			boxes()
+			break
+		elif choice == 'r':
+			cell_open()
+			break
+		else:	
+		 	invalid_selection()
 
 def stairs_no_guard():
 	prison_title()
@@ -396,9 +500,13 @@ def stairs_no_guard():
 		
 		Press R to Return to the hall
 				""")
-	choice = input()
-	if choice == 'r':
-		hall_no_guard()
+	while True:
+		choice = input()
+		if choice == 'r':
+			hall_no_guard()
+			break
+		else:	
+		 	invalid_selection()
 
 def stairs_with_hairpin():
 	prison_title()
@@ -409,9 +517,13 @@ def stairs_with_hairpin():
 		
 		Press R to Return to the hall
 				""")
-	choice = input()
-	if choice == 'r':
-		hall_with_hairpin()
+	while True:
+		choice = input()
+		if choice == 'r':
+			hall_with_hairpin()
+			break
+		else:	
+		 	invalid_selection()
 
 def stairs_closet_unlocked():
 	prison_title()
@@ -422,9 +534,13 @@ def stairs_closet_unlocked():
 
 		Press R to Return to the hall
 				""")
-	choice = input()
-	if choice == 'r':
-		hall_closet_unlocked()
+	while True:
+		choice = input()
+		if choice == 'r':
+			hall_closet_unlocked()
+			break
+		else:	
+		 	invalid_selection()
 
 def stairs_with_uniform():
 	prison_title()
@@ -435,11 +551,16 @@ def stairs_with_uniform():
 		Press C to enter the Courtyard
 		Press R to Return to the hall
 				""")
-	choice = input()
-	if choice == 'c':
-		courtyard()
-	elif choice == 'r':
-		hall_with_uniform()
+	while True:
+		choice = input()
+		if choice == 'c':
+			courtyard()
+			break
+		elif choice == 'r':
+			hall_with_uniform()
+			break
+		else:	
+		 	invalid_selection()
 
 def sheets_gross():
 	prison_title()
@@ -448,9 +569,11 @@ def sheets_gross():
 		
 		Press R to Return to your cell
 				""")
-	choice = input()
-	if choice == 'r':
-		cell_final()
+	while True:
+		choice = input()
+		if choice == 'r':
+			cell_final()
+			break
 
 def hall_no_guard():
 	prison_title()
@@ -462,13 +585,19 @@ def hall_no_guard():
 		Press H to check the Hall
 		Press S to check the Stairs
 				""")
-	choice = input()
-	if choice == 'c':
-		closet_locked_no_hairpin()
-	elif choice == 'h':
-		hall_find_pin()
-	elif choice == 's':
-		stairs_no_guard()
+	while True:
+		choice = input()
+		if choice == 'c':
+			closet_locked_no_hairpin()
+			break
+		elif choice == 'h':
+			hall_find_pin()
+			break
+		elif choice == 's':
+			stairs_no_guard()
+			break
+		else:	
+		 	invalid_selection()
 
 def hall_find_pin():
 	prison_title()
@@ -478,11 +607,16 @@ def hall_find_pin():
 		Press T to Take the hairpin
 		Press R to Return to the hall
 				""")
-	choice = input()
-	if choice == 't':
-		hall_with_hairpin()
-	elif choice == 'r':
-		hall_no_guard()
+	while True:
+		choice = input()
+		if choice == 't':
+			hall_with_hairpin()
+			break
+		elif choice == 'r':
+			hall_no_guard()
+			break
+		else:	
+		 	invalid_selection()
 
 def hall_with_hairpin():
 	prison_title()
@@ -493,11 +627,16 @@ def hall_with_hairpin():
 		Press C to check the Closet
 		Press S to check the Stairs
 				""")
-	choice = input()
-	if choice == 'c':
-		closet_hairpin()
-	elif choice == 's':
-		stairs_with_hairpin()
+	while True:
+		choice = input()
+		if choice == 'c':
+			closet_hairpin()
+			break
+		elif choice == 's':
+			stairs_with_hairpin()
+			break
+		else:	
+		 	invalid_selection()
 
 def hall_closet_unlocked():
 	prison_title()
@@ -507,11 +646,16 @@ def hall_closet_unlocked():
 		Press C to check the Closet
 		Press S to check the Stairs
 				""")
-	choice = input()
-	if choice == 'c':
-		open_closet()
-	elif choice == 's':
-		stairs_closet_unlocked()
+	while True:
+		choice = input()
+		if choice == 'c':
+			open_closet()
+			break
+		elif choice == 's':
+			stairs_closet_unlocked()
+			break
+		else:	
+		 	invalid_selection()
 
 def hall_with_uniform():
 	prison_title()
@@ -522,11 +666,16 @@ def hall_with_uniform():
 		Press C to check the Closet
 		Press S to check the Stairs
 				""")
-	choice = input()
-	if choice == 'c':
-		closet_uniform_on()
-	elif choice == 's':
-		stairs_with_uniform()
+	while True:
+		choice = input()
+		if choice == 'c':
+			closet_uniform_on()
+			break
+		elif choice == 's':
+			stairs_with_uniform()
+			break
+		else:	
+		 	invalid_selection()
 
 def cell_final():
 	prison_title()
@@ -536,9 +685,13 @@ def cell_final():
 
 		Press H to go to the Hallway.
 				""")
-	choice = input()
-	if choice == 'h':
-		hall_no_guard()
+	while True:
+		choice = input()
+		if choice == 'h':
+			hall_no_guard()
+			break
+		else:	
+		 	invalid_selection()
 
 def courtyard():
 	prison_title()
@@ -546,17 +699,20 @@ def courtyard():
 		Nervously, you start to climb the stairs. Your hearts is pounding! As you walk
 	  by the office, you make eye contact with one of the guards. He says "Hey!"
 	  and your heart stops.
-	  		""")
-	time.sleep(4)
-	print("""
-		Press T to Talk to the guard
+	  
+	  Press T to Talk to the guard
 	  Press R to Run for it
 				""")
-	choice = input()
-	if choice == 't':
-		guard()
-	elif choice == 'r':
-		run()
+	while True:
+		choice = input()
+		if choice == 't':
+			guard()
+			break
+		elif choice == 'r':
+			run()
+			break
+		else:	
+		 	invalid_selection()
 
 def guard():
 	prison_title()
@@ -566,9 +722,13 @@ def guard():
     
     Press C to enter the Courtyard.
 				""")
-	choice = input()
-	if choice == 'c':
-		courtyard()
+	while True:
+		choice = input()
+		if choice == 'c':
+			freedom()
+			break
+		else:	
+		 	invalid_selection()
 
 def run():
 	prison_title()
@@ -577,26 +737,26 @@ def run():
 	  alarm and signals to outside guards there's a prisoner on the loose. Both towers
 	  have guns drawn on you as they take aim. The first bullet almost hits you in the
 	  leg. 
-	  """)
-	time.sleep(3)
-	print("""
+
 	  You keep running. The gate is only 20 yards away, just a little further and
 	  you're free! Suddenly, you fall to the ground as you feel your lower body go
 	  completely numb. You've been shot. You can't move your legs. You take one last
 	  look at the gate, just several feet away. You hear one final shot and everything
 	  goes black.	  
 				""")
-	time.sleep(5)
+	time.sleep(10)
 	print("""
-		Game Over!
-
 		Press R to Restart
 			""")
-	choice = input()
-	if choice == 'r':
-		cell_main()
+	while True:
+		choice = input()
+		if choice == 'r':
+			cell_main()
+			break
+		else:	
+		 	invalid_selection()
 
-def courtyard():
+def freedom():
 	prison_title()
 	print("""
 		You wish the guard a good night, and enter the courtyard. Your heart
@@ -610,8 +770,12 @@ def courtyard():
 	print("""
 		Press R to Restart
 			""")
-	choice = input()
-	if choice == 'r':
-		cell_main()
+	while True:
+		choice = input()
+		if choice == 'r':
+			cell_main()
+			break
+		else:	
+		 	invalid_selection()
 
 intro()
